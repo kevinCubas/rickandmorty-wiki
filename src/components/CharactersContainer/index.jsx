@@ -1,55 +1,48 @@
-import { allCharactersID } from "../../allCharactersID"
-import { useFetch } from "../../hooks/useFetch"
+import { useEffect, useRef, useState } from "react"
 import { CharacterCard } from "../CharacterCard"
 import { SearchInput } from "../SearchInput"
 import { Container, DisplayCardsContainer, SearchFieldsContainer } from "./style"
 
-// LOOPS AFFECTING PERFORMANCE | Loops afetando performance
-// Created an array with all ID | Criei um array com todos ID | 
+export const CharacterContainer = ({ allCharacters }) => {
+  const [refElementIsVisible, setRefElementIsVisible] = useState()
+  const [charactersCount, setCharactersCount] = useState(26)
+  const { renderInput, searchName } = SearchInput();
 
-// const allCharactersID = []
-// let counter = 1
+  const referer = useRef()
 
-// while (allCharacterID.length < 826) {
-//   allCharacterID.push(counter)
-//   counter++
-//   console.log("renderizei")
-// }
-// function addCharactersID() {
-//   for (let i = 1; i <= 826; i++) {
-//     allCharactersID.push(i)
-//     console.log("entrei no loop")
-//   }
-// }
+  const observer = new IntersectionObserver((entries) => {
+    const entry = entries[0]
+    setRefElementIsVisible(entry.isIntersecting)
+  })
 
-// addCharactersID()
-
-export const CharacterContainer = () => {
-  const { allCharacters, isLoading, errorMessage } = useFetch(allCharactersID)
-  const { renderInput, searchName } = SearchInput()
-
-  const filteredCharacters = searchName.length > 2 ? allCharacters.filter((character)=> {
+  const filteredCharacters = searchName.length >= 2 ? allCharacters.filter((character) => {
     return character.name.toLowerCase().includes(searchName.toLowerCase())
   }) : allCharacters;
+  
+  const charactersSliced = filteredCharacters.slice(0, charactersCount);
+  
+  useEffect(() => {
+    observer.observe(referer.current)
+
+    if (refElementIsVisible && charactersCount < filteredCharacters.length) {
+      setCharactersCount(prev => prev + 20)
+      console.log(charactersCount)
+    }
+  }, [refElementIsVisible])
 
   return (
     <Container>
-      {isLoading && <h1 style={{ display: "flex", justifyContent: "center" }}>Loading...</h1>}
-      {errorMessage && <h2>{errorMessage}</h2>}
-      {!isLoading &&
-        <>
-          <SearchFieldsContainer>
-            {renderInput}
-          </SearchFieldsContainer>
-          <DisplayCardsContainer>
-            {filteredCharacters?.map((character) => {
-              const { id, image, name, status } = character;
-              return <CharacterCard key={id} id={id} image={image} name={name} status={status} />
-            })
-            }
-          </DisplayCardsContainer>
-        </>
-      }
+      <SearchFieldsContainer>
+        {renderInput}
+      </SearchFieldsContainer>
+      <DisplayCardsContainer>
+        {charactersSliced?.map((character) => {
+          const { id, image, name, status } = character;
+          return <CharacterCard key={id} id={id} image={image} name={name} status={status} />
+        })
+        }
+      </DisplayCardsContainer>
+      <div id="referenceDiv" ref={referer}></div>
     </Container>
   )
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 
 export const useFetch = (id) => {
@@ -8,12 +8,8 @@ export const useFetch = (id) => {
   const [isLoading, setIsLoading] = useState(true)
   const [errorMessage, setErrorMessage] = useState(null)
 
-  // Get data from LocalStorage if exist || Obter dados do LocalStorage, se existir
-  const allCharactersLocalStorage = localStorage.getItem("allCharacters")
-  const allCharacters = allCharactersLocalStorage ? JSON.parse(allCharactersLocalStorage) : apiDataResponse;
-
   //API CALL
-  const callAPI = async () => {
+  const callAPI = useCallback(async () => {
     try {
       const response = await fetch(`${BASE_CHARACTER_URL + id}`)
       if (!response.ok)
@@ -23,23 +19,16 @@ export const useFetch = (id) => {
       const data = await response.json()
       setApiDataResponse(data)
       setIsLoading(false)
-      console.log("renderizei")
-      // Saving data to localStorage || Salvando dados ao LocalStorage
-      localStorage.setItem("allCharacters", JSON.stringify(data))
-
+      console.log("render")
     } catch (err) {
       setErrorMessage(err.message)
       setIsLoading(false)
     }
-  }
+  }, [id])
 
   useEffect(() => {
-    if (!allCharactersLocalStorage) {
-      callAPI()
-    } else {
-      setIsLoading(false)
-    }
+    callAPI()
   }, [])
 
-  return { allCharacters, errorMessage, isLoading }
+  return { apiDataResponse, errorMessage, isLoading }
 }
