@@ -1,9 +1,19 @@
-export const CharacterCard = (props) => {
-  const {id, image, name} = props;
+import { memo } from "react";
+import { CharacterInfo, CharacterName, CharacterStatus, CharacterWrapper, ImageContainer } from "./style";
+
+const CharacterCardComponent = (props) => {
+  const { id, image, name, status } = props;
   return (
-    <div key={id}>
-      <img src={image} alt="" width="80px" height="80px" />
-      <p>{name}</p>
-    </div>
+    <CharacterWrapper key={id}>
+      <ImageContainer>
+        <img src={image} alt={name + "Image"} />
+      </ImageContainer>
+      <CharacterInfo>
+        <CharacterName>{name}</CharacterName>
+        <CharacterStatus theme={status}>{status}</CharacterStatus>
+      </CharacterInfo>
+    </CharacterWrapper >
   )
 }
+
+export const CharacterCard = memo(CharacterCardComponent)

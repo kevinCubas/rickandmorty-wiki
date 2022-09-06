@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 
-export function useFetch(id) {
+export const useFetch = (id) => {
   const BASE_CHARACTER_URL = `https://rickandmortyapi.com/api/character/`
 
   const [apiDataResponse, setApiDataResponse] = useState([])
@@ -23,7 +23,7 @@ export function useFetch(id) {
       const data = await response.json()
       setApiDataResponse(data)
       setIsLoading(false)
-
+      console.log("renderizei")
       // Saving data to localStorage || Salvando dados ao LocalStorage
       localStorage.setItem("allCharacters", JSON.stringify(data))
 

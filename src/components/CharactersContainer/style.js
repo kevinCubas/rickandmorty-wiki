@@ -1,17 +1,23 @@
 import styled from 'styled-components'
 
 export const Container = styled.section`
-  padding: 0 2rem 2rem;
+  padding: 0 3rem;
 `
 
 export const DisplayCardsContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  row-gap: 3rem;
-  column-gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+`
+
+export const SearchFieldsContainer = styled.div`
+  margin: 3rem 0;
+  display: flex;
+  justify-content: space-evenly;
   @media (max-width: 580px) {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 3rem;
   }
 `
