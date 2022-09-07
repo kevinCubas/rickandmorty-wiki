@@ -1,5 +1,6 @@
 import { allCharactersID } from "../allCharactersID"
 import { CharacterContainer } from "../components/CharactersContainer"
+import { PageTitle } from "../components/PageTitle"
 import { useFetch } from "../hooks/useFetch"
 
 export const Home = () => {
@@ -16,7 +17,11 @@ export const Home = () => {
     <>
       {isLoading && <h1 style={{ display: "flex", justifyContent: "center" }}>Loading...</h1>}
       {errorMessage && <h2>{errorMessage}</h2>}
-      {!isLoading && <CharacterContainer allCharacters={allCharacters} />}
+      {!isLoading && 
+      <>
+        <PageTitle />
+        <CharacterContainer allCharacters={allCharacters} />
+      </>}
     </>
   )
 }

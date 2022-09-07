@@ -19,7 +19,6 @@ export const useFetch = (id) => {
       const data = await response.json()
       setApiDataResponse(data)
       setIsLoading(false)
-      console.log("render")
     } catch (err) {
       setErrorMessage(err.message)
       setIsLoading(false)

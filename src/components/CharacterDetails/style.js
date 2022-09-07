@@ -7,13 +7,23 @@ export const MainDetailContainer = styled.main`
   width: 100%;
   min-height: calc(100vh - 4rem);
   overflow: hidden;
+  background-image: url("/rick&morty.png");
+  background-position: right;
+  background-repeat: no-repeat;
+
+  @media (max-width: 590px) { 
+    background-size: cover;
+    background-position: center;
+
+  }
 `
 
 export const CharacterDetailCard = styled.div`
   display: flex;
   border-radius: 1em;
   overflow: hidden;
-  background-color: #32383e;
+  background: rgba(225, 225, 225, .2);
+  border: 1px solid rgba(225, 225, 225, 0.2);
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
 
   img {
@@ -33,10 +43,16 @@ export const CharacterDetailInfo = styled.div `
   flex-direction: column;
   justify-content: flex-end;
   gap: .5rem;
-  color: #aaa;
+  color: #001B2B;
 
   h2 {
     font-size: 2rem;
+    color: #000;
+  }
+
+  .gender {
+    color: #000;
+    font-weight: 700;
   }
 `
 
@@ -58,7 +74,7 @@ export const StatusSpeciesWrapper = styled.div`
   }
 
   .species {
-    background-color: #262626;
+    background-color: #B3B3B3;
     color: currentColor;
   }
 `
@@ -67,12 +83,13 @@ export const LocationWrapper = styled.div`
   .origin,
   .lastknown {
     font-size: 1rem;
-    color: #7a8288;
+    color: #484848;
     display: block;
   }
 
   .location {
-    color: #fff;
+    color: #000;
+    font-weight: 700;
     font-size: 1rem;
   }
 `

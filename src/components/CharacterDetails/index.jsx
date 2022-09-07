@@ -14,7 +14,7 @@ export const CharacterDetails = ({name, image, origin, gender, status, species, 
         <span className="status">{status}</span>
         <span className="species">{species}</span>
       </StatusSpeciesWrapper>
-      <span className="gender">Gender: {gender}</span>
+      <span>Gender: <span className="gender">{gender}</span></span>
       <LocationWrapper>
         <span className="origin">Origin: <br /><span className="location">{origin.name}</span></span>
         <span className="lastknown">Last known location: <br /><span className="location">{location.name}</span></span>

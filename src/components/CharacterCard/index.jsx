@@ -5,7 +5,7 @@ import { CharacterInfo, CharacterName, CharacterStatus, CharacterWrapper, ImageC
 const CharacterCardComponent = (props) => {
   const { id, image, name, status } = props;
   return (
-    <Link to={`/${id}`}>
+    <Link to={`detail/${id}`}>
       <CharacterWrapper key={id}>
         <ImageContainer>
           <img src={image} alt={name + "Image"} />

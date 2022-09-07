@@ -11,7 +11,7 @@ export const SelectFiltered = styled(Select)`
   }
 
   .Select__control {
-    background-color: #000;
+    background: #234b22;
     width: 200px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     outline: none;
@@ -26,7 +26,7 @@ export const SelectFiltered = styled(Select)`
   }
 
   .Select__menu {
-    background-color: #000;
+    background-color: #234b22;
     color: #fff;
     border-radius: 5px;
   }
@@ -40,7 +40,7 @@ export const SelectFiltered = styled(Select)`
     color: #fff;
     cursor: pointer;
     &:hover {
-      background-color: gray;
+      background-color: #459039;
     }
   }
 

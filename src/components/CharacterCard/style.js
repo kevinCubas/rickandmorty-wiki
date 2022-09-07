@@ -11,6 +11,7 @@ export const CharacterWrapper = styled.div`
   position: relative;
   font-family: sans-serif;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  transition: .5s ease-in;
   
   @media (max-width: 580px) {
     width: 300px;
@@ -18,6 +19,10 @@ export const CharacterWrapper = styled.div`
   @media (max-width: 375px) {
     width: 200px;
     font-size: 12px;
+  }
+
+  :hover {
+    box-shadow: #a4ff00 0px 10px 20px, #a4ff00 0px 6px 6px;
   }
 `
 
