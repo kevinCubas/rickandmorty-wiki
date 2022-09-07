@@ -14,5 +14,6 @@ export const GlobalStyle = createGlobalStyle`
     height: 100vh;
     width: 100%;
     background: linear-gradient(to right top, #002505, #003d0d, #00560f, #00710c, #138c00) fixed;
+    font-family: sans-serif;
   }
 `

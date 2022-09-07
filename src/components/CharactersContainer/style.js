@@ -12,9 +12,9 @@ export const DisplayCardsContainer = styled.div`
 `
 
 export const SearchFieldsContainer = styled.div`
-  margin: 3rem 0;
+  padding: 3rem 3.5rem;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   @media (max-width: 580px) {
     display: flex;
     flex-direction: column;
