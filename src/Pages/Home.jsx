@@ -12,16 +12,13 @@ export const Home = () => {
   // Get data from LocalStorage if exist || Obter dados do LocalStorage, se existir
   const allCharactersLocalStorage = localStorage.getItem("allCharacters")
   const allCharacters = allCharactersLocalStorage ? JSON.parse(allCharactersLocalStorage) : apiDataResponse;
-
+  
   return (
     <>
+      <PageTitle />
+      <CharacterContainer allCharacters={allCharacters} />
+      {errorMessage && <h2 style={{ display: "flex", justifyContent: "center" }}>{errorMessage}</h2>}
       {isLoading && <h1 style={{ display: "flex", justifyContent: "center" }}>Loading...</h1>}
-      {errorMessage && <h2>{errorMessage}</h2>}
-      {!isLoading && 
-      <>
-        <PageTitle />
-        <CharacterContainer allCharacters={allCharacters} />
-      </>}
     </>
   )
 }
